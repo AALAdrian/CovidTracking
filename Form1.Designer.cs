@@ -32,8 +32,8 @@ namespace CovidTracking
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.LastName_Label = new System.Windows.Forms.TextBox();
             this.FirstName_Label = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.LastName = new System.Windows.Forms.TextBox();
+            this.FirstName = new System.Windows.Forms.TextBox();
             this.Contact_Label = new System.Windows.Forms.TextBox();
             this.ContactNo = new System.Windows.Forms.TextBox();
             this.EmAdd_Label = new System.Windows.Forms.TextBox();
@@ -50,8 +50,10 @@ namespace CovidTracking
             this.Q3chkbx = new System.Windows.Forms.CheckBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.Temperature = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
+            this.directoryPath = new System.Windows.Forms.FolderBrowserDialog();
+            this.directory = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -93,23 +95,23 @@ namespace CovidTracking
             this.FirstName_Label.TabStop = false;
             this.FirstName_Label.Text = "FIRST NAME";
             // 
-            // textBox2
+            // LastName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(12, 136);
-            this.textBox2.MaxLength = 26;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(273, 41);
-            this.textBox2.TabIndex = 1;
+            this.LastName.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LastName.Location = new System.Drawing.Point(12, 136);
+            this.LastName.MaxLength = 26;
+            this.LastName.Name = "LastName";
+            this.LastName.Size = new System.Drawing.Size(273, 41);
+            this.LastName.TabIndex = 1;
             // 
-            // textBox3
+            // FirstName
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(291, 135);
-            this.textBox3.MaxLength = 26;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(273, 41);
-            this.textBox3.TabIndex = 2;
+            this.FirstName.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FirstName.Location = new System.Drawing.Point(291, 135);
+            this.FirstName.MaxLength = 26;
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Size = new System.Drawing.Size(273, 41);
+            this.FirstName.TabIndex = 2;
             // 
             // Contact_Label
             // 
@@ -187,9 +189,10 @@ namespace CovidTracking
             this.SaveBtn.Location = new System.Drawing.Point(470, 648);
             this.SaveBtn.Name = "SaveBtn";
             this.SaveBtn.Size = new System.Drawing.Size(94, 29);
-            this.SaveBtn.TabIndex = 6;
+            this.SaveBtn.TabIndex = 10;
             this.SaveBtn.Text = "SAVE";
             this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.Track);
             // 
             // ResetBtn
             // 
@@ -197,7 +200,7 @@ namespace CovidTracking
             this.ResetBtn.Location = new System.Drawing.Point(370, 648);
             this.ResetBtn.Name = "ResetBtn";
             this.ResetBtn.Size = new System.Drawing.Size(94, 29);
-            this.ResetBtn.TabIndex = 6;
+            this.ResetBtn.TabIndex = 10;
             this.ResetBtn.Text = "RESET";
             this.ResetBtn.UseVisualStyleBackColor = true;
             // 
@@ -303,14 +306,14 @@ namespace CovidTracking
             this.textBox5.TabStop = false;
             this.textBox5.Text = "Temperature";
             // 
-            // textBox6
+            // Temperature
             // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox6.Location = new System.Drawing.Point(291, 298);
-            this.textBox6.MaxLength = 5;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(227, 41);
-            this.textBox6.TabIndex = 6;
+            this.Temperature.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Temperature.Location = new System.Drawing.Point(291, 298);
+            this.Temperature.MaxLength = 5;
+            this.Temperature.Name = "Temperature";
+            this.Temperature.Size = new System.Drawing.Size(227, 41);
+            this.Temperature.TabIndex = 6;
             // 
             // textBox7
             // 
@@ -325,23 +328,33 @@ namespace CovidTracking
             this.textBox7.TabStop = false;
             this.textBox7.Text = "℃";
             // 
+            // directory
+            // 
+            this.directory.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.directory.Location = new System.Drawing.Point(12, 650);
+            this.directory.Name = "directory";
+            this.directory.Size = new System.Drawing.Size(352, 27);
+            this.directory.TabIndex = 11;
+            this.directory.Text = "DIRECTORY";
+            // 
             // CovidTracking
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 57F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(578, 689);
+            this.Controls.Add(this.directory);
             this.Controls.Add(this.Q3chkbx);
             this.Controls.Add(this.Q2chkbx);
             this.Controls.Add(this.Q1chkbx);
             this.Controls.Add(this.ResetBtn);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.DoB);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.FirstName);
+            this.Controls.Add(this.Temperature);
             this.Controls.Add(this.EmailAdd);
             this.Controls.Add(this.ContactNo);
             this.Controls.Add(this.EmAdd_Label);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.LastName);
             this.Controls.Add(this.Question3);
             this.Controls.Add(this.Question2);
             this.Controls.Add(this.Question1);
@@ -354,6 +367,8 @@ namespace CovidTracking
             this.Controls.Add(this.LastName_Label);
             this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CovidTracking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -368,8 +383,8 @@ namespace CovidTracking
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox LastName_Label;
         private System.Windows.Forms.TextBox FirstName_Label;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox LastName;
+        private System.Windows.Forms.TextBox FirstName;
         private System.Windows.Forms.TextBox Contact_Label;
         private System.Windows.Forms.TextBox ContactNo;
         private System.Windows.Forms.TextBox EmAdd_Label;
@@ -386,8 +401,10 @@ namespace CovidTracking
         private System.Windows.Forms.CheckBox Q3chkbx;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox Temperature;
         private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.FolderBrowserDialog directoryPath;
+        private System.Windows.Forms.TextBox directory;
     }
 }
 
