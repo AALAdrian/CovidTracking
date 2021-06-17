@@ -16,9 +16,11 @@ namespace CovidTracking
         public CovidTracking()
         {
             InitializeComponent();
+            SavingPath();
+        }
+        private void SavingPath()
+        {
             FolderBrowserDialog folderDlg = new();
-            folderDlg.ShowNewFolderButton = true;
-            // Show the FolderBrowserDialog.  
             DialogResult result = folderDlg.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -26,7 +28,17 @@ namespace CovidTracking
                 Environment.SpecialFolder root = folderDlg.RootFolder;
             }
         }
-
+        private void Reset(object sender, EventArgs e)
+        {
+            LastName.Clear();
+            FirstName.Clear();
+            ContactNo.Clear();
+            EmailAdd.Clear();
+            Temperature.Clear();
+            Q1chkbx.Checked = false;
+            Q2chkbx.Checked = false;
+            Q3chkbx.Checked = false;
+        }
         private void HasText()
         {
             if (!string.IsNullOrEmpty(LastName.Text) && 
@@ -37,28 +49,49 @@ namespace CovidTracking
                 !string.IsNullOrEmpty(Temperature.Text)
                 )
             {
-                MessageBox.Show("DATA IS COMPLETE");
-                //GetInfo();
+                MessageBox.Show("DATA IS SAVE");
+                GetInfo();
             }
             else
             {
-                MessageBox.Show("Data is NOT COMPLETE");
+                MessageBox.Show("Data is NOT COMPLETE", "ERROR");
             }
         }
         private void GetInfo()
         {
-
-            //bool[] trackingQuest = new bool[3];
-            //trackingQuest[1] = Q1chkbx.Checked;
-            //trackingQuest[2] = Q2chkbx.Checked;
-            //trackingQuest[3] = Q3chkbx.Checked;
-            string trackingInfo = $"{LastName.Text},{FirstName.Text},{ContactNo.Text},{EmailAdd.Text},{DoB.Text},{Temperature.Text},";
-        }
-        private void WritetoFile(string info, bool[] questions)
-        {
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory.Text, "WriteLines.txt"), true))
+            string trackingQuest = "";
+            if (!Q1chkbx.Checked)
             {
-                outputFile.WriteLine("Fourth Line");
+                trackingQuest += ", no";
+            }
+            else
+            {
+                trackingQuest += ", yes";
+            }
+            if (!Q2chkbx.Checked)
+            {
+                trackingQuest += ", no";
+            }
+            else
+            {
+                trackingQuest += ", yes";
+            }
+            if (!Q3chkbx.Checked)
+            {
+                trackingQuest += ", no";
+            }
+            else
+            {
+                trackingQuest += ", yes";
+            }
+            string trackingInfo = $"{LastName.Text},{FirstName.Text},{ContactNo.Text},{EmailAdd.Text},{DoB.Text},{Temperature.Text}C";
+            WritetoFile(trackingInfo+trackingQuest);
+        }
+        private void WritetoFile(string info)
+        {
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory.Text, $"{DateTime.Now.ToString("yyyy-MM-dd_hh")}.txt"), true))
+            {
+                outputFile.WriteLine(info);
             }
         }
         private void Track(object sender, EventArgs e)
@@ -74,5 +107,6 @@ namespace CovidTracking
             //}
             HasText();
         }
+
     }
 }

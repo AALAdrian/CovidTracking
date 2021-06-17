@@ -203,6 +203,7 @@ namespace CovidTracking
             this.ResetBtn.TabIndex = 10;
             this.ResetBtn.Text = "RESET";
             this.ResetBtn.UseVisualStyleBackColor = true;
+            this.ResetBtn.Click += new System.EventHandler(this.Reset);
             // 
             // Question1
             // 
@@ -330,11 +331,14 @@ namespace CovidTracking
             // 
             // directory
             // 
+            this.directory.BackColor = System.Drawing.SystemColors.Control;
+            this.directory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.directory.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.directory.Location = new System.Drawing.Point(12, 650);
+            this.directory.Location = new System.Drawing.Point(12, 653);
             this.directory.Name = "directory";
-            this.directory.Size = new System.Drawing.Size(352, 27);
+            this.directory.Size = new System.Drawing.Size(352, 20);
             this.directory.TabIndex = 11;
+            this.directory.TabStop = false;
             this.directory.Text = "DIRECTORY";
             // 
             // CovidTracking
