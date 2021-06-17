@@ -27,6 +27,11 @@ namespace CovidTracking
                 directory.Text = folderDlg.SelectedPath;
                 Environment.SpecialFolder root = folderDlg.RootFolder;
             }
+            else
+            {
+                MessageBox.Show("Please Enter A Valid Directory", "ERROR");
+                SavingPath();
+            }
         }
         private void Reset(object sender, EventArgs e)
         {

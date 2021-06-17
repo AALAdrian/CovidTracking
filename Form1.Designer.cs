@@ -339,7 +339,6 @@ namespace CovidTracking
             this.directory.BackColor = System.Drawing.SystemColors.Control;
             this.directory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.directory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.directory.Enabled = false;
             this.directory.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.directory.Location = new System.Drawing.Point(12, 653);
             this.directory.Name = "directory";
