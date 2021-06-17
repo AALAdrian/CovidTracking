@@ -84,27 +84,32 @@ namespace CovidTracking
             {
                 trackingQuest += ", yes";
             }
-            string trackingInfo = $"{LastName.Text},{FirstName.Text},{ContactNo.Text},{EmailAdd.Text},{DoB.Text},{Temperature.Text}C";
+            string trackingInfo = $"{LastName.Text},{FirstName.Text},{ContactNo.Text},{EmailAdd.Text},{DoB.Text},{Temperature.Text} C";
             WritetoFile(trackingInfo+trackingQuest);
+        }
+        private void IfFileExist()
+        {
+            var title = $"Last Name,First Name,Contact Number,Email,Birthday,Temperature,Question 1,Question 2,Question 3";
+            string filepath = directory.Text +"\\" + $"{DateTime.Now.ToString("yyyy-MM-dd_hh")}.csv";
+            if (!File.Exists(filepath))
+            {
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory.Text, $"{DateTime.Now.ToString("yyyy-MM-dd_hh")}.csv"), true))
+                {
+                    outputFile.WriteLine(title);
+                }
+            }
         }
         private void WritetoFile(string info)
         {
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory.Text, $"{DateTime.Now.ToString("yyyy-MM-dd_hh")}.txt"), true))
+            IfFileExist();
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory.Text, $"{DateTime.Now.ToString("yyyy-MM-dd_hh")}.csv"), true))
             {
                 outputFile.WriteLine(info);
+                Reset();
             }
         }
         private void Track(object sender, EventArgs e)
         {
-
-            //if (Directory.Exists(@"C:\Temp\Demo"))
-            //{
-            //    MessageBox.Show("The Directory Exists!");
-            // }
-            //else
-            //{
-            //    MessageBox.Show("The Does Not Directory Exists!");
-            //}
             HasText();
         }
 
