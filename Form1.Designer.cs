@@ -29,6 +29,7 @@ namespace CovidTracking
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.LastName_Label = new System.Windows.Forms.TextBox();
             this.FirstName_Label = new System.Windows.Forms.TextBox();
@@ -54,6 +55,7 @@ namespace CovidTracking
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.directoryPath = new System.Windows.Forms.FolderBrowserDialog();
             this.directory = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // textBox1
@@ -185,6 +187,7 @@ namespace CovidTracking
             // 
             // SaveBtn
             // 
+            this.SaveBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SaveBtn.Location = new System.Drawing.Point(470, 648);
             this.SaveBtn.Name = "SaveBtn";
@@ -196,6 +199,7 @@ namespace CovidTracking
             // 
             // ResetBtn
             // 
+            this.ResetBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ResetBtn.Location = new System.Drawing.Point(370, 648);
             this.ResetBtn.Name = "ResetBtn";
@@ -331,15 +335,22 @@ namespace CovidTracking
             // 
             // directory
             // 
+            this.directory.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.directory.BackColor = System.Drawing.SystemColors.Control;
             this.directory.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.directory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.directory.Enabled = false;
             this.directory.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.directory.Location = new System.Drawing.Point(12, 653);
             this.directory.Name = "directory";
+            this.directory.PlaceholderText = "DIRECTORY";
+            this.directory.ReadOnly = true;
             this.directory.Size = new System.Drawing.Size(352, 20);
             this.directory.TabIndex = 11;
             this.directory.TabStop = false;
             this.directory.Text = "DIRECTORY";
+            this.toolTip1.SetToolTip(this.directory, "Double Click to Change the Directory");
+            this.directory.DoubleClick += new System.EventHandler(this.ChangePath);
             // 
             // CovidTracking
             // 
@@ -409,6 +420,7 @@ namespace CovidTracking
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.FolderBrowserDialog directoryPath;
         private System.Windows.Forms.TextBox directory;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

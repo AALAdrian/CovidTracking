@@ -105,13 +105,18 @@ namespace CovidTracking
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(directory.Text, $"{DateTime.Now.ToString("yyyy-MM-dd_hh")}.csv"), true))
             {
                 outputFile.WriteLine(info);
-                Reset();
+                
             }
         }
         private void Track(object sender, EventArgs e)
         {
             HasText();
+            ResetBtn.PerformClick();
         }
 
+        private void ChangePath(object sender, EventArgs e)
+        {
+            SavingPath();
+        }
     }
 }
